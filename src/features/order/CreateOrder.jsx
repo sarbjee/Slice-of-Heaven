@@ -40,13 +40,12 @@ function CreateOrder() {
   if (!cart.length) return <EmptyCart />;
 
   return (
-    <div className="px-4 py-6">
-           <h2 className="mb-8 text-xl font-semibold">Ready to order? Let&apos;s go!</h2>
+    <div className="px-4 py-6 bg-green-100"> {/* Olive-like background */}
+      <h2 className="mb-8 text-xl font-semibold text-green-800">Ready to order? Let&apos;s go!</h2>
 
-      {/* <Form method="POST" action="/order/new"> */}
       <Form method="POST">
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
-          <label className="sm:basis-40">First Name</label>
+          <label className="sm:w-40">First Name</label> {/* Changed sm:basis-40 to sm:w-40 */}
           <input
             className="input grow"
             type="text"
@@ -57,7 +56,7 @@ function CreateOrder() {
         </div>
 
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
-          <label className="sm:basis-40">Phone number</label>
+          <label className="sm:w-40">Phone number</label> {/* Changed sm:basis-40 to sm:w-40 */}
           <div className="grow">
             <input className="input w-full" type="tel" name="phone" required />
             {formErrors?.phone && (
@@ -69,7 +68,7 @@ function CreateOrder() {
         </div>
 
         <div className="relative mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
-          <label className="sm:basis-40">Address</label>
+          <label className="sm:w-40">Address</label> {/* Changed sm:basis-40 to sm:w-40 */}
           <div className="grow">
             <input
               className="input w-full"
@@ -87,7 +86,7 @@ function CreateOrder() {
           </div>
 
           {!position.latitude && !position.longitude && (
-            <span className="absolute right-[3px] top-[3px] z-50 md:right-[5px] md:top-[5px]">
+            <span className="absolute right-3 top-3 z-50 md:right-5 md:top-5"> {/* Updated positioning */}
               <Button
                 disabled={isLoadingAddress}
                 type="small"
@@ -112,7 +111,7 @@ function CreateOrder() {
             onChange={(e) => setWithPriority(e.target.checked)}
           />
           <label htmlFor="priority" className="font-medium">
-            Want to yo give your order priority?
+            Want to give your order priority?
           </label>
         </div>
 
@@ -128,7 +127,7 @@ function CreateOrder() {
             }
           />
 
-          <Button disabled={isSubmitting || isLoadingAddress} type="primary">
+          <Button disabled={isSubmitting || isLoadingAddress} type="primary" className="bg-green-600 text-white hover:bg-green-700"> {/* Updated button styling */}
             {isSubmitting
               ? 'Placing order....'
               : `Order now from ${formatCurrency(totalPrice)}`}
@@ -158,7 +157,7 @@ export async function action({ request }) {
 
   if (Object.keys(errors).length > 0) return errors;
 
-  // If everything is okay, create new order and redirect
+  // If everything is okay, create a new order and redirect
   const newOrder = await createOrder(order);
 
   // Do NOT overuse
