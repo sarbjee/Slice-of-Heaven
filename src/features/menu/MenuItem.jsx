@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../ui/Button';
 import DeleteItem from '../cart/DeleteItem';
@@ -7,7 +8,6 @@ import { addItem, getCurrentQuantityById } from '../cart/cartSlice';
 
 function MenuItem({ pizza }) {
   const dispatch = useDispatch();
-
   const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
 
   const currentQuantity = useSelector(getCurrentQuantityById(id));
@@ -66,5 +66,17 @@ function MenuItem({ pizza }) {
   );
 }
 
+MenuItem.propTypes = {
+  pizza: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    unitPrice: PropTypes.number.isRequired,
+    ingredients: PropTypes.arrayOf(PropTypes.string).isRequired,
+    soldOut: PropTypes.bool.isRequired,
+    imageUrl: PropTypes.string.isRequired,
+  }).isRequired,
+};
+
 export default MenuItem;
+
 

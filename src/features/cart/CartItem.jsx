@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { formatCurrency } from '../../utils/helpers';
 import DeleteItem from './DeleteItem';
@@ -26,5 +27,14 @@ function CartItem({ item }) {
     </li>
   );
 }
+
+CartItem.propTypes = {
+  item: PropTypes.shape({
+    pizzaId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    name: PropTypes.string.isRequired,
+    quantity: PropTypes.number.isRequired,
+    totalPrice: PropTypes.number.isRequired,
+  }).isRequired,
+};
 
 export default CartItem;
