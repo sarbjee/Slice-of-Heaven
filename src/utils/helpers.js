@@ -1,9 +1,10 @@
 export function formatCurrency(value) {
   return new Intl.NumberFormat("en", {
     style: "currency",
-    currency: "EUR",
+    currency: "CAD", 
   }).format(value);
 }
+
 
 export function formatDate(dateStr) {
   return new Intl.DateTimeFormat("en", {

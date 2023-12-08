@@ -1,14 +1,8 @@
 // Test ID: IIDSAT
 import { useFetcher, useLoaderData } from 'react-router-dom';
-
 import OrderItem from './OrderItem';
-
 import { getOrder } from '../../services/apiRestaurant';
-import {
-  calcMinutesLeft,
-  formatCurrency,
-  formatDate,
-} from '../../utils/helpers';
+import { calcMinutesLeft, formatCurrency, formatDate } from '../../utils/helpers';
 import { useEffect } from 'react';
 import UpdateOrder from './UpdateOrder';
 
@@ -53,7 +47,7 @@ function Order() {
         </div>
       </div>
 
-      <div className="flex flex-wrap items-center justify-between gap-2 bg-stone-200 px-6 py-5">
+      <div className="flex flex-wrap items-center justify-between gap-2 px-6 py-5">
         <p className="font-medium">
           {deliveryIn >= 0
             ? `Only ${calcMinutesLeft(estimatedDelivery)} minutes left 😃`
@@ -64,7 +58,7 @@ function Order() {
         </p>
       </div>
 
-      <ul className="dive-stone-200 divide-y border-b border-t">
+      <ul className="divide-stone-200 divide-y border-b border-t">
         {cart.map((item) => (
           <OrderItem
             item={item}
@@ -78,7 +72,7 @@ function Order() {
         ))}
       </ul>
 
-      <div className="space-y-2 bg-stone-200 px-6 py-5">
+      <div className="space-y-2 px-6 py-5">
         <p className="text-sm font-medium text-stone-600">
           Price pizza: {formatCurrency(orderPrice)}
         </p>
@@ -103,4 +97,5 @@ export async function loader({ params }) {
 }
 
 export default Order;
+
 
